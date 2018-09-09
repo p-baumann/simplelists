@@ -38,7 +38,7 @@ Copy [simplelists.sty](simplelists.sty) into the folder of your LaTeX document a
 ```
 
 ## (In)Compatibilities with other packages
-It seems to work with the **enumitem** package: optional arguments to `\ul` are passed to **enumitem**.
+It seems to work with the [enumitem](https://ctan.org/pkg/enumitem) package: optional arguments to `\ul` are passed to **enumitem**.
 
 ## Issues
 Probably many. Use at your own risk! I take no responsibility if it eats your dissertation (it probably won't though).
