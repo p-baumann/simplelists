@@ -1,0 +1,60 @@
+%% simplelists: simple HTML-inspired lists with commands that open an environment and take the first item 
+
+%% last edit: 2018-09-08
+%% Copyright 2018 by Peter Baumann
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN
+%% archives in directory macros/latex/base/lppl.txt
+
+\ProvidesPackage{simplelists}[simple lists commands inspired by HTML]
+\RequirePackage{ifthen}
+
+%
+%% define \li as alias for item
+\newcommand{\li}{\item}
+
+%
+%% unordered lists with prefix u
+%% result in itemize environments
+\def\uli{%
+   \@ifnextchar[ {\@uli}{\@uli[]}}
+\def\@uli[#1]{
+\begin{itemize}[#1]%
+\item{}}
+
+\def\Uli#1\par%
+{%
+\item{}#1
+\end{itemize}}
+
+\newcommand{\ul}[1][]{%
+   \ifthenelse{ \equal{#1}{} }
+      {\begin{itemize}[] }
+      {\begin{itemize}[#1] }
+}
+
+\newcommand{\Ul}{\end{itemize}}
+
+%
+%% ordered lists with prefix o
+%% result in enumerate environments
+\def\oli{%
+   \@ifnextchar[ {\@oli}{\@oli[]}}
+\def\@oli[#1]{
+\begin{enumerate}[#1]%
+\item{}}
+
+\def\Oli#1\par%
+{%
+\item{}#1
+\end{enumerate}}
+
+\newcommand{\ol}[1][]{%
+   \ifthenelse{ \equal{#1}{} }
+      {\begin{enumerate}[] }
+      {\begin{enumerate}[#1] }
+}
+
+\newcommand{\Ol}{\end{enumerate}}
+
+\endinput

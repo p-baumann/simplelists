@@ -1,0 +1,74 @@
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}  
+\usepackage{simplelists} 
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset
+{
+    language=[LaTeX]TeX,
+    breaklines=true,
+    morekeywords={lstinline, itemize, enumerate, ul, Ul, li, Ol, ol, Uli, uli, Oli, oli},
+    basicstyle=\tt,
+    keywordstyle=\color{blue}
+}
+
+\title{\textbf{simplelists}: HTML-style list commands in \LaTeX{}}
+\author{Peter Baumann}
+\date{}
+
+\begin{document}
+\maketitle\noindent
+\textbf{simplelists} is a package for creating \lstinline!itemize! and \lstinline!enumerate! lists with short (or terse) HMTL-like commands:
+\ul
+\li Unordered lists are created with \lstinline!\ul!
+\li They are \lstinline!itemize! environments
+\ul
+\li They nest
+\li \lstinline!\li! is the command for list items
+\li It is just an alias for \lstinline!\item!
+\li[*] So it accepts an optional label argument: \lstinline!\li[*]!
+\Ul
+\li List environments are closed with the first letter in uppercase: \lstinline!\Ul!
+\Ul
+
+\ol
+\li Ordered lists are created with \lstinline!\ol!
+\li They are \lstinline!enumerate! environments
+\ol
+\li They nest as well
+\ul 
+\li And unordered lists can appear nested within them 
+\Ul
+\Ol
+\li They are also closed with the first letter in uppercase: \lstinline!\Ol!
+\Ol
+
+\section*{Combined environment and item commands}
+For convenience, there are combinations of \lstinline!\ul! and \lstinline!\li!:
+\uli A list can be opened with an item in one command: \lstinline!\uli!
+\li The following items are again introduced with \lstinline!\li!
+\Uli Similarly, the last item can close a list environment: \lstinline$Uli$. 
+
+The empty line following \lstinline$Uli$ is mandatory, the environment is actually closed by the end of a paragraph. To close a nested environment the regular (item-free) closing commands (\lstinline!\Ul! and \lstinline!\Ol!) are recommended. They work with the (combined) opening commands taking an item (\lstinline$uli$). 
+
+The combined closing commands \lstinline!\Uli! and \lstinline!\Oli! are a bit sensitive and may not work in all cases\footnote{It is apparently impossible including an \texttt{lstinline} command with an exclamation mark as separator inside a final item. But then \texttt{lstinline} is impossible in footnotes, no matter which separator is used. The combined commands are possible in footnotes (as long as there is an empty line):
+\uli Opening item
+\Uli Closing item
+
+}:  The combined opening commands seem to be less sensitive.
+
+\section*{Customization with enumitem}
+Both environments play nicely with the package \textbf{enumitem}:
+\ul[label=\textregistered, leftmargin=*]
+\li Optional arguments passed to \lstinline!\ul! and \lstinline!\ol! 
+\li are passed to \lstinline!\begin{itemize}! and \lstinline!\begin{enumerate}!, respectively
+\Ul
+This also works with the combined commands:
+\uli[label=\textregistered, leftmargin=*] Optional arguments passed to \lstinline$\uli$ and \lstinline$\oli$
+\Uli are passed to their respective environments.
+
+\end{document}
